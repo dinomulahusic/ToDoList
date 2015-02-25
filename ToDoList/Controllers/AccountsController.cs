@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ToDoList.Database;
@@ -26,13 +27,20 @@ namespace ToDoList.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegisterUser(userModel);
-
-            IHttpActionResult errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
+            try
             {
-                return errorResult;
+                IdentityResult result = await _repo.RegisterUser(userModel);
+
+                IHttpActionResult errorResult = GetErrorResult(result);
+
+                if (errorResult != null)
+                {
+                    return errorResult;
+                }
+            }
+            catch (Exception ex)
+            {
+ 
             }
 
             return Ok();

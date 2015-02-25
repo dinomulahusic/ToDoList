@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using ToDoList.Database;
 
 namespace ToDoList
 {
@@ -9,6 +10,8 @@ namespace ToDoList
     {
         public static void Register(HttpConfiguration config)
         {
+            //ToDo: remove after development
+            System.Data.Entity.Database.SetInitializer<AuthContext>(null);
             // Web API configuration and services
 
             // Web API routes
