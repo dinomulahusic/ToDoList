@@ -30,7 +30,7 @@ namespace ToDoList
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new SimpleAuthorizationServerProvider()
             };
-
+            char c = (char)12;
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
