@@ -27,9 +27,13 @@ namespace ToDoList.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Clients.Add(new Models.Client() { Id = "ngAuthApp", Active = true, AllowedOrigin = "localhost", ApplicationType = Models.ApplicationTypes.JavaScript, Name = "ngAuthApp", RefreshTokenLifeTime = 7200, Secret = "test" });
-            context.SaveChanges();
+            try
+            {
+               /* context.Clients.Add(new Models.Client() { Id = "ngAuthApp", Active = true, AllowedOrigin = "localhost", ApplicationType = Models.ApplicationTypes.JavaScript, Name = "ngAuthApp", RefreshTokenLifeTime = 7200, Secret = "test" });
+                context.SaveChanges();*/
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }

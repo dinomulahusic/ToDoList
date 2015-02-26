@@ -6,8 +6,7 @@ namespace ToDoList.Database
 {
     public class AuthContext : IdentityDbContext<IdentityUser>
     {
-        public AuthContext()
-            : base("DatabaseConnectionString")
+        public AuthContext() : base("DatabaseConnectionString", throwIfV1Schema: false)
         {
 
         }

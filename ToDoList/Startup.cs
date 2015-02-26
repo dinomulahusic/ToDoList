@@ -2,6 +2,7 @@
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Data.Entity.Migrations;
 using System.Web.Http;
 using ToDoList.Database;
 
@@ -12,10 +13,19 @@ namespace ToDoList
     {
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration config = new HttpConfiguration();
+            try
+            {
+               /* var configuration = new Migrations.Configuration();
+                var migrator = new DbMigrator(configuration);
+                migrator.Update();*/
+            }
+            catch (Exception ex)
+            { 
+            }
 
             ConfigureOAuth(app);
-
+            
+            HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
