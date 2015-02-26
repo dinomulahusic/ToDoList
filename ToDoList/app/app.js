@@ -23,6 +23,11 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/categories.html"
     });
 
+    $routeProvider.when("/todo", {
+        controller: "categoriesController",
+        templateUrl: "/app/views/categories.html"
+    });
+
     $routeProvider.when("/refresh", {
         controller: "refreshController",
         templateUrl: "/app/views/refresh.html"
