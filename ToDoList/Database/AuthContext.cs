@@ -13,5 +13,7 @@ namespace ToDoList.Database
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+        public System.Data.Entity.DbSet<ToDoList.Models.Category> Categories { get; set; }
     }
 }

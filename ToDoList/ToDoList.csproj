@@ -124,18 +124,18 @@
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\loginController.js" />
-    <Content Include="app\controllers\ordersController.js" />
+    <Content Include="app\controllers\categoriesController.js" />
     <Content Include="app\controllers\refreshController.js" />
     <Content Include="app\controllers\signupController.js" />
     <Content Include="app\controllers\tokensManagerController.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
-    <Content Include="app\services\ordersService.js" />
+    <Content Include="app\services\categoriesService.js" />
     <Content Include="app\services\tokensManagerService.js" />
     <Content Include="app\views\associate.html" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\login.html" />
-    <Content Include="app\views\orders.html" />
+    <Content Include="app\views\categories.html" />
     <Content Include="app\views\refresh.html" />
     <Content Include="app\views\signup.html" />
     <Content Include="app\views\tokens.html" />
@@ -176,6 +176,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RefreshTokensController.cs" />
     <Compile Include="Database\AuthContext.cs" />
@@ -183,18 +184,33 @@
     <Compile Include="Database\SimpleRefreshTokenProvider.cs" />
     <Compile Include="Database\Helper.cs" />
     <Compile Include="Database\SimpleAuthorizationServerProvider.cs" />
-    <Compile Include="Migrations\201502250823069_InitialCreate.cs" />
-    <Compile Include="Migrations\201502250823069_InitialCreate.Designer.cs">
-      <DependentUpon>201502250823069_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201502261317391_Initial.cs" />
+    <Compile Include="Migrations\201502261317391_Initial.Designer.cs">
+      <DependentUpon>201502261317391_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502251228011_test.cs" />
-    <Compile Include="Migrations\201502251228011_test.Designer.cs">
-      <DependentUpon>201502251228011_test.cs</DependentUpon>
+    <Compile Include="Migrations\201502261319548_Initial2.cs" />
+    <Compile Include="Migrations\201502261319548_Initial2.Designer.cs">
+      <DependentUpon>201502261319548_Initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502261328065_Init3.cs" />
+    <Compile Include="Migrations\201502261328065_Init3.Designer.cs">
+      <DependentUpon>201502261328065_Init3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502261339006_test.cs" />
+    <Compile Include="Migrations\201502261339006_test.Designer.cs">
+      <DependentUpon>201502261339006_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502261350166_tt.cs" />
+    <Compile Include="Migrations\201502261350166_tt.Designer.cs">
+      <DependentUpon>201502261350166_tt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ApplicationTypes.cs" />
     <Compile Include="Models\RefreshToken.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TaskItem.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -215,11 +231,20 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502250823069_InitialCreate.resx">
-      <DependentUpon>201502250823069_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502261317391_Initial.resx">
+      <DependentUpon>201502261317391_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502251228011_test.resx">
-      <DependentUpon>201502251228011_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502261319548_Initial2.resx">
+      <DependentUpon>201502261319548_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502261328065_Init3.resx">
+      <DependentUpon>201502261328065_Init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502261339006_test.resx">
+      <DependentUpon>201502261339006_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502261350166_tt.resx">
+      <DependentUpon>201502261350166_tt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,10 +3,82 @@ namespace ToDoList.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        CategoryId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 100),
+                        Order = c.Int(nullable: false),
+                        ParentCategoryId = c.Int(nullable: false),
+                        Category_CategoryId = c.Int(),
+                    })
+                .PrimaryKey(t => t.CategoryId)
+                .ForeignKey("dbo.Categories", t => t.Category_CategoryId)
+                .Index(t => t.Category_CategoryId);
+            
+            CreateTable(
+                "dbo.TaskItems",
+                c => new
+                    {
+                        TaskItemId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Description = c.String(),
+                        Order = c.Int(nullable: false),
+                        Priority = c.Int(nullable: false),
+                        PlanedDate = c.DateTime(nullable: false),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        SpentTimeInSeconds = c.Int(nullable: false),
+                        Category_CategoryId = c.Int(),
+                    })
+                .PrimaryKey(t => t.TaskItemId)
+                .ForeignKey("dbo.Categories", t => t.Category_CategoryId)
+                .Index(t => t.Category_CategoryId);
+            
+            CreateTable(
+                "dbo.Tags",
+                c => new
+                    {
+                        TaskItemId = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false),
+                        TaskItem_TaskItemId = c.Int(),
+                    })
+                .PrimaryKey(t => t.TaskItemId)
+                .ForeignKey("dbo.TaskItems", t => t.TaskItem_TaskItemId)
+                .Index(t => t.TaskItem_TaskItemId);
+            
+            CreateTable(
+                "dbo.Clients",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Secret = c.String(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 100),
+                        ApplicationType = c.Int(nullable: false),
+                        Active = c.Boolean(nullable: false),
+                        RefreshTokenLifeTime = c.Int(nullable: false),
+                        AllowedOrigin = c.String(maxLength: 100),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.RefreshTokens",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Subject = c.String(nullable: false, maxLength: 50),
+                        ClientId = c.String(nullable: false, maxLength: 50),
+                        IssuedUtc = c.DateTime(nullable: false),
+                        ExpiresUtc = c.DateTime(nullable: false),
+                        ProtectedTicket = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -83,17 +155,28 @@ namespace ToDoList.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Tags", "TaskItem_TaskItemId", "dbo.TaskItems");
+            DropForeignKey("dbo.TaskItems", "Category_CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.Categories", "Category_CategoryId", "dbo.Categories");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Tags", new[] { "TaskItem_TaskItemId" });
+            DropIndex("dbo.TaskItems", new[] { "Category_CategoryId" });
+            DropIndex("dbo.Categories", new[] { "Category_CategoryId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.RefreshTokens");
+            DropTable("dbo.Clients");
+            DropTable("dbo.Tags");
+            DropTable("dbo.TaskItems");
+            DropTable("dbo.Categories");
         }
     }
 }

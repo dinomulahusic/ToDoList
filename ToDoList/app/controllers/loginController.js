@@ -13,7 +13,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         authService.login($scope.loginData).then(function (response) {
 
-            $location.path('/orders');
+            $location.path('/categories');
 
         },
          function (err) {
@@ -51,11 +51,11 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
             }
             else {
-                //Obtain access token and redirect to orders
+                //Obtain access token and redirect to categories
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
                 authService.obtainAccessToken(externalData).then(function (response) {
 
-                    $location.path('/orders');
+                    $location.path('/categories');
 
                 },
              function (err) {
